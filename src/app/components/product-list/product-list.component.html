@@ -1,0 +1,12 @@
+<div>
+    <h1>Product List</h1>
+
+  <div fxLayout="row wrap"
+       fxLayoutAlign="flex-start">
+	    <ng-container  *ngFor="let product of products">
+        <app-product-item fxFlex="33%"
+                          fxLayoutGap="32px"
+                          [product]="product"></app-product-item>
+      </ng-container>
+  </div>
+</div>

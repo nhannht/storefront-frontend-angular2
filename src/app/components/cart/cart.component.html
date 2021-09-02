@@ -1,0 +1,17 @@
+<h1>Your cart</h1>
+<br>
+<div *ngIf="total > 0; else emptyCart">
+    <h3>Total: {{total | number: '1.1-2'}}$</h3>
+    <button mat-flat-button color="primary" (click)="checkout()">Check Out</button>
+</div>
+<br>
+<div fxLayout="row wrap">
+  <div fxFlex="33%" *ngFor="let cartedItem of cartedItems">
+    <app-cart-item
+                   [cartedItem]="cartedItem"
+                   (deleteItem)="deleteItem($event)"
+                   (changeInCart)="changeInCart($event)"
+    ></app-cart-item>
+  </div>
+</div>
+<ng-template #emptyCart>There is no item in your cart. Click <a routerLink="">here</a> to continue shopping.</ng-template>

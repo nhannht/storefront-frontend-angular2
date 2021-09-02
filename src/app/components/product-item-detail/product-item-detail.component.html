@@ -1,0 +1,27 @@
+<mat-card >
+  <div fxLayout.md="row " fxLayout.xs="column" fxLayoutGap="10%">
+    <mat-card-header fxFlex="50%" fxLayout="column">
+      <img mat-card-image fxFlex fxFlexAlign.md="center" src="{{product.url}}" alt="{{product.id}}"/>
+      <mat-card-title fxFlex>{{product.name}}</mat-card-title>
+    </mat-card-header>
+    <div fxFlex="50%" fxLayout="column"  >
+      <mat-card-content fxFlex="20%" fxFlexAlign="center">
+        <p>{{product.description}}</p>
+        <h3>${{product.price}}</h3>
+      </mat-card-content>
+      <mat-card-actions  fxFlex="20%" fxLayoutGap="10%" fxLayout="row" fxLayoutAlign="center center">
+        <button mat-icon-button fxFlex (click)="decrement()">
+          <mat-icon class="fa fa-minus"></mat-icon>
+        </button>
+        <button mat-icon-button fxFlex (click)="increment()">
+          <mat-icon class="fa fa-plus"></mat-icon>
+        </button>
+        <button mat-icon-button fxFlex (click)="addToCart(product)">
+          <mat-icon class="fa fa-shopping-cart">
+          </mat-icon>
+        </button>
+        <p fxFlex>{{selectedQty}}</p>
+      </mat-card-actions>
+    </div>
+  </div>
+</mat-card>

@@ -1,0 +1,30 @@
+<ng-container>
+  <mat-card >
+    <mat-card-header fxLayout="column"
+    fxLayoutGap="10%">
+      <mat-card-title fxFlex>{{product.name}}</mat-card-title>
+      <ng-container>
+        <a fxFlex="100%" routerLink="product/{{product.id}}">
+        <img mat-card-image src="{{product.url}}" alt="{{product.id}}"/>
+      </a></ng-container>
+      <mat-card-content fxFlex fxFlexAlign="center">${{product.price}}</mat-card-content>
+    </mat-card-header>
+    <mat-card-actions fxLayout="column"
+    fxLayoutGap="10%">
+      <div fxLayout="row"
+           fxLayoutGap="10%"
+           fxFlex>
+        <button fxFlex mat-icon-button (click)="decrement()">
+          <mat-icon class="fa fa-minus fa-2x" ></mat-icon>
+        </button>
+        <button fxFlex mat-icon-button (click)="increment()">
+          <mat-icon class="fa fa-plus fa-2x"></mat-icon>
+        </button>
+        <button fxFlex mat-icon-button (click)="addToCart(product)">
+          <mat-icon class="fa fa-shopping-cart fa-2x"></mat-icon>
+        </button>
+      </div>
+      <h3 fxFlex fxFlexAlign="center"> {{selectedQty}}</h3>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>

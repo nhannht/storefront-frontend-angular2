@@ -1,0 +1,22 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h2>{{cartedItem.name}}</h2>
+    </mat-card-title>
+    <h3>${{cartedItem.price}}</h3>
+  </mat-card-header>
+  <mat-card-actions>
+    <button mat-icon-button (click)="decrement(cartedItem)">
+    <mat-icon class="fa fa-arrow-down fa-2x"></mat-icon>
+    </button>
+    <p>{{inCartQty === 0 ? cartedItem.inCartQty : inCartQty}}</p>
+    <button mat-icon-button (click)="increment(cartedItem)">
+      <mat-icon class="fa fa-arrow-up fa-2x"></mat-icon>
+    </button>
+    <p>How much? {{inCartQty === 0 ? (cartedItem.inCartQty * cartedItem.price) : inCartQty * cartedItem.price}}</p>
+    <button mat-icon-button (click)="deleteFromCart(cartedItem)">
+      <mat-icon class="fa fa-trash fa-2x"></mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
+
