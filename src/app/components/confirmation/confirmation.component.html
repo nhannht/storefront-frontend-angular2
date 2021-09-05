@@ -1,35 +1,64 @@
 <div *ngIf="confirmedOrder === false; else orderConfirmation">
-    <h1>Your Order</h1>
-    <ul *ngFor="let item of orderedItems">
-        <li>
-            <h3>{{item.name}}</h3>
-            <p>Quantity: {{item.inCartQty}}</p>
-            <p>Sub total: {{item.inCartQty*item.price}}</p>
-        </li>
-    </ul>
-    <div *ngIf="total > 0; else noOrder">
-        <h3>Total: {{total}}</h3>
-        <div>
-            <h3>For Delivery</h3>
-            <form #form="ngForm" (ngSubmit)="submitOrder()">
-                <input type="text" name="firstName" required minlength="20" [(ngModel)]="firstName" placeholder="First Name">
-                >
-                <input type="text" name="address" required minlength="20" [(ngModel)]="address" placeholder="Address">
-                >
-                <input type="text" name="creditCardNumber" required minlength="16" [(ngModel)]="cardNumber" placeholder="Credit Card Number">
-                >
-                <input type="submit" [disabled]="form.invalid" value="Submit">
-            </form>
+  <h1>Your Order</h1>
+  <ul *ngFor="let item of orderedItems">
+    <mat-card>
+      <mat-card-title>{{item.name}}</mat-card-title>
+      <mat-card-content>
+        <p>Quantity: {{item.inCartQty}}</p>
+        <p>Sub total: {{item.inCartQty * item.price}}</p>
+      </mat-card-content>
+    </mat-card>
+  </ul>
+  <div *ngIf="total > 0; else noOrder">
+    <h3>Total: {{total}}</h3>
+    <div>
+      <h3>For Delivery</h3>
+      <form #form="ngForm" (ngSubmit)="submitOrder()">
+        <input type="text"
+               id="firstName"
+               name="firstName"
+               class="form-control"
+               required minlength="20"
+               [(ngModel)]="firstName"
+               placeholder="First Name"
+               #fname="ngModel">
+        <input type="text"
+               name="address"
+               required minlength="20"
+               class="form-control"
+               [(ngModel)]="address"
+               placeholder="Address"
+        #Address="ngModel">
+        <input type="text"
+               class="form-control"
+               name="creditCardNumber"
+               required minlength="16"
+               [(ngModel)]="cardNumber"
+               placeholder="Credit Card Number"
+        #creditCardNumber="ngModel">
+        <div *ngIf="fname.invalid && fname.touched && fname.dirty">
+          Your first name must be at least 20 characters
         </div>
+        <div *ngIf="Address.invalid && Address.touched && Address.dirty">
+          Your address must be at least 20 characters
+        </div>
+        <div *ngIf="creditCardNumber.invalid && creditCardNumber.touched && creditCardNumber.dirty">
+          Your address must be at least 16 characters
+
+        </div>
+        <input type="submit" [disabled]="form.invalid" value="Submit">
+      </form>
     </div>
+
+  </div>
 </div>
 <ng-template #orderConfirmation>
-    <div>
-        Thanks, {{firstName}}! Your order of {{total}} has been confirmed.
-        Please allow us 3 to 5 working days to process your order!
-        Meanwhile, you can continue shopping <a routerLink="">here</a>.
-    </div>
+  <div>
+    Thanks, {{firstName}}! Your order of {{total}} has been confirmed.
+    Please allow us 3 to 5 working days to process your order!
+    Meanwhile, you can continue shopping <a routerLink="">here</a>.
+  </div>
 </ng-template>
 <ng-template #noOrder>
-    <div>There is no orders.</div>
+  <div>There is no orders.</div>
 </ng-template>

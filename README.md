@@ -2,6 +2,18 @@ For someone want to check my code, I snapshot the workspace and public it to git
 
 [![Open a snapshot in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#snapshot/5692172e-a6a2-447c-b597-6b9ce062e9f8)
 
+- This little application simulate a simple storefront. 
+- Included endpoint
+
+|Endpoint|Description|
+|---|---|
+|/|List all available item that are in selling|
+|/cart| item in customer cart|
+|/product/:id|detail product information with id|
+|/confirmation| check out page|
+
+
+- In development mode with `ng server` it run on port 4200
 
 ![image](https://user-images.githubusercontent.com/69144096/131902425-27456721-d517-4c0f-a7b1-53815a93df6f.png)
 

@@ -8,14 +8,14 @@ import { ProductsService } from 'src/app/services/products.service';
   styleUrls: ['./cart-item.component.css']
 })
 export class CartItemComponent implements OnInit {
-  
+
   @Input() cartedItem: Product
   @Output() deleteItem: EventEmitter<Product> = new EventEmitter()
   @Output() changeInCart: EventEmitter<number> = new EventEmitter()
 
   inCartQty: number = 0
-  
-  constructor(private productsService: ProductsService) { 
+
+  constructor(private productsService: ProductsService) {
     this.cartedItem = {
         id: 1,
         name: "",
@@ -32,14 +32,18 @@ export class CartItemComponent implements OnInit {
 
   decrement(product: Product) {
     this.inCartQty = product.inCartQty
-    
+
     this.inCartQty > 0 && (this.inCartQty -=1)
-    this.inCartQty === 0 && this.deleteItem.emit(product) // quantity reduced to 0 equals being deleted from cart
-  
+    if (this.inCartQty === 0) {
+      this.deleteItem.emit(product) // quantity reduced to 0 equals being deleted from cart
+      alert(`${product.name} is remove from your cart`)
+
+    }
+
     this.productsService.updateCartedItem(product.id,this.inCartQty)
     this.changeInCart.emit(this.inCartQty) //to update the total in cart component
   }
-  
+
   increment(product: Product) {
     this.inCartQty = product.inCartQty
     this.inCartQty +=1
@@ -49,6 +53,7 @@ export class CartItemComponent implements OnInit {
 
   deleteFromCart(toBeDeletedItem: Product): void {
     this.deleteItem.emit(toBeDeletedItem)
+    alert(`${toBeDeletedItem.name} is delete from cart`);
   }
 
 }

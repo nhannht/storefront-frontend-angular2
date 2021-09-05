@@ -13,7 +13,7 @@ export class ProductItemDetailComponent implements OnInit {
   selectedQty: number = 0
   cartedItems: Product[] = []
 
-  constructor(private productsService:ProductsService, private route:ActivatedRoute) { 
+  constructor(private productsService:ProductsService, private route:ActivatedRoute) {
     this.product = {
         id: 1,
         name: "",
@@ -31,7 +31,7 @@ export class ProductItemDetailComponent implements OnInit {
 
       this.cartedItems = this.productsService.getCartedItems()
       const inCartedCheck = this.cartedItems.filter( item => item.id === id)
-      
+
       if (inCartedCheck.length === 0 ) {
         this.productsService.getProducts().subscribe( res => {
           this.product = res[id-1]

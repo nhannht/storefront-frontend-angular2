@@ -13,23 +13,20 @@ export class ConfirmationComponent implements OnInit {
 
   confirmedOrder: boolean = false
 
-  firstName: string
-  address: string
-  cardNumber: string
+  firstName = '';
+  address = '';
+  cardNumber = '';
 
   constructor(private productsService:ProductsService) {
     this.total = 0
 
-    this.firstName = ""
-    this.address = ""
-    this.cardNumber = ""
    }
 
   ngOnInit(): void {
     this.confirmedOrder = false
 
     this.orderedItems = this.productsService.getCartedItems()
-    
+
     for (let i = 0; i < this.orderedItems.length; i++) {
       this.total = this.total + this.orderedItems[i].price * this.orderedItems[i].inCartQty
     }
